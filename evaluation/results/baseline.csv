@@ -1,0 +1,6 @@
+question,ground_truth,answer,exact_match,f1_score,context_hit
+What government position was held by the woman who portrayed Corliss Archer in the film Kiss and Tell?,Chief of Protocol,I cannot find the answer in the provided context.,0.0,0.0,1.0
+"What science fantasy young adult series, told in first person, has a set of companion books narrating the stories of enslaved worlds and alien species?",Animorphs,The Animorphs series.,1.0,0.5,1.0
+"The director of the romantic comedy ""Big Stone Gap"" is based in what New York city?","Greenwich Village, New York City","I cannot find the answer in the provided context. The context only mentions that the film was produced by Donna Gigliotti for Altar Identity Studios, a subsidiary of Media Society, but it does not specify which New York City the studio or its personnel are based in.",0.0,0.125,0.0
+2014 S/S is the debut album of a South Korean boy group that was formed by who?,YG Entertainment,YG Entertainment.,1.0,0.5,1.0
+Who was known by his stage name Aladin and helped organizations improve their performance as a consultant?,Eenasul Fateh,"Eenasul Fateh (also known as Aladin) was a Bangladeshi-British cultural practitioner, magician, live artist, and former international management consultant.",1.0,0.1904761904761905,1.0

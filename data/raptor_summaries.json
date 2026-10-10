@@ -1,0 +1,72 @@
+[
+  {
+    "text": "There is no shared theme or topic among the passages provided, as they describe different individuals and groups from various fields such as entertainment and sports.",
+    "metadata": {
+      "source": "raptor_summary",
+      "cluster_size": 36,
+      "original_sources": [
+        "Hamish and Andy's Gap Year",
+        "Cho Kyuhyun",
+        "History (band)"
+      ]
+    },
+    "distance": 0.0,
+    "is_summary": true
+  },
+  {
+    "text": "There is no common theme or topic shared across the passages. The texts appear to be unrelated, discussing various geographic locations (Woodson, Arkansas; Clinton, Minnesota), music groups and albums (Kingston Morning, Shinee, WINNER, MADTOWN, SF9), and a solo rapper (Lil Ru).",
+    "metadata": {
+      "source": "raptor_summary",
+      "cluster_size": 44,
+      "original_sources": [
+        "Woodson, Arkansas",
+        "Kingston Morning",
+        "Clinton, Minnesota"
+      ]
+    },
+    "distance": 0.0,
+    "is_summary": true
+  },
+  {
+    "text": "There is no summary to write as there are no passages provided. Please share the actual passages you'd like me to summarize.",
+    "metadata": {
+      "source": "raptor_summary",
+      "cluster_size": 40,
+      "original_sources": [
+        "Ed Wood (film)",
+        "Scott Derrickson",
+        "Tyler Bates"
+      ]
+    },
+    "distance": 0.0,
+    "is_summary": true
+  },
+  {
+    "text": "No summary is available as there are no passages provided to summarize. Please provide the passages you would like me to work with, and I will be happy to assist.",
+    "metadata": {
+      "source": "raptor_summary",
+      "cluster_size": 26,
+      "original_sources": [
+        "Lord High Treasurer",
+        "Secretary of State for Constitutional Affairs",
+        "Village accountant"
+      ]
+    },
+    "distance": 0.0,
+    "is_summary": true
+  },
+  {
+    "text": "There is no clear common theme among the passages provided. However, a possible thread is that some of these individuals or works are associated with popular series or franchises, such as Shirley Temple Black's connection to Hollywood and Victoria Hanley's work on \"The Seer And The Sword\" series, while others like K.A. Applegate's \"Animorphs\" and Elizabeth Kay's \"Divide\" trilogy continue a story within established franchises.",
+    "metadata": {
+      "source": "raptor_summary",
+      "cluster_size": 54,
+      "original_sources": [
+        "Shirley Temple",
+        "Victoria Hanley",
+        "The Hork-Bajir Chronicles"
+      ]
+    },
+    "distance": 0.0,
+    "is_summary": true
+  }
+]

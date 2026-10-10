@@ -1,0 +1,712 @@
+Microsoft Windows [Version 10.0.26200.8457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Bhadra>cd C:\Users\Bhadra\OneDrive\Desktop\raptor
+
+C:\Users\Bhadra\OneDrive\Desktop\raptor>venv\Scripts\activate
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>venv\Scripts\activate
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+  [1/5] What government position was held by the woman who portrayed...
+  [2/5] What science fantasy young adult series, told in first perso...
+  [3/5] The director of the romantic comedy "Big Stone Gap" is based...
+  [4/5] 2014 S/S is the debut album of a South Korean boy group that...
+  [5/5] Who was known by his stage name Aladin and helped organizati...
+
+==================================================
+SCORES — BASELINE (5 samples)
+==================================================
+  Exact Match:   0.6000
+  F1 Score:      0.2631
+  Context Hit:   0.8000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/baseline.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/retrieval/hyde.py
+Loading index...
+Loaded FAISS index with 2991 vectors
+
+============================================================
+NORMAL RETRIEVAL
+============================================================
+Answer: Valentina Vladimirovna Tereshkova was the first woman to have flown in space, having been selected from more than 400 applicants and five finalists to pilot Vostok 6 on 16 June 1963.
+Top chunk: Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади́мировна Терешко́ва ; ] ; born 6 March 1937) is a retired Russian cosmonaut, engineer, and...
+
+============================================================
+HYDE RETRIEVAL
+============================================================
+  Generating hypothetical document...
+  Hypothetical: Valentina Tereshkova became the first woman in space on June 16, 1963, aboard the Soviet spacecraft ...
+Hypothetical used: Valentina Tereshkova became the first woman in space on June 16, 1963, aboard the Soviet spacecraft Vostok 6. During her nearly three-day journey, she completed 48 orbits of the Earth and demonstrated the feasibility of sending a female cosmonaut into space. Her historic flight marked a significant milestone for women's participation in space exploration.
+Answer: Valentina Vladimirovna Tereshkova.
+Top chunk: Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади́мировна Терешко́ва ; ] ; born 6 March 1937) is a retired Russian cosmonaut, engineer, and...
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/retrieval/hyde.py
+Loading index...
+Loaded FAISS index with 2991 vectors
+
+============================================================
+QUERY: Which Soviet citizen was the pioneering female space traveler?
+============================================================
+  Generating hypothetical document...
+  Hypothetical: Valentina Tereshkova was the pioneering female space traveler of the Soviet Union, becoming the firs...
+
+NORMAL answer:  Valentina Vladimirovna Tereshkova.
+Normal top chunk: Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади́мировна Терешко́ва ; ] ; born 6 March 1...
+
+HyDE hypothetical: Valentina Tereshkova was the pioneering female space traveler of the Soviet Union, becoming the first woman to journey into outer space on June 16, 19...
+HyDE answer:    Valentina Vladimirovna Tereshkova.
+HyDE top chunk: Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади́мировна Терешко́ва ; ] ; born 6 March 1...
+
+Different retrieval? NO - same chunks retrieved
+
+============================================================
+QUERY: Where did the allied forces conduct the largest amphibious assault in history?
+============================================================
+  Generating hypothetical document...
+  Hypothetical: The Allied forces conducted the largest amphibious assault in history at Normandy, France during Wor...
+
+NORMAL answer:  I cannot find the answer in the provided context.
+Normal top chunk: The Asiatic-Pacific Theater, was the theater of operations of U.S. forces during World War II in the...
+
+HyDE hypothetical: The Allied forces conducted the largest amphibious assault in history at Normandy, France during World War II, specifically on June 6, 1944, known as ...
+HyDE answer:    I cannot find the answer in the provided context.
+HyDE top chunk: The Asiatic-Pacific Theater, was the theater of operations of U.S. forces during World War II in the...
+
+Different retrieval? NO - same chunks retrieved
+
+============================================================
+QUERY: What technology allows computers to understand human language?
+============================================================
+  Generating hypothetical document...
+  Hypothetical: Natural Language Processing (NLP) is a subfield of artificial intelligence that enables computers to...
+
+NORMAL answer:  I cannot find the answer in the provided context. The context only mentions Dutch as a West Germanic language and Real Estate Technology or Property T
+Normal top chunk: In computer science, the Sethi–Ullman algorithm is an algorithm named after Ravi Sethi and Jeffrey D...
+
+HyDE hypothetical: Natural Language Processing (NLP) is a subfield of artificial intelligence that enables computers to comprehend, interpret, and generate human languag...
+HyDE answer:    I cannot find the answer in the provided context. The context only mentions computer science concepts, compiler construction, and computer scientists,
+HyDE top chunk: In computer science, the Sethi–Ullman algorithm is an algorithm named after Ravi Sethi and Jeffrey D...
+
+Different retrieval? NO - same chunks retrieved
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py --pipeline hyde --samples 5 --label hyde
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+  [1/5] What government position was held by the woman who portrayed...
+  Generating hypothetical document...
+  Hypothetical: Ingrid Bergman played the role of Corliss Archer in the 1957 film Kiss and Tell, however she is not ...
+  [2/5] What science fantasy young adult series, told in first perso...
+  Generating hypothetical document...
+  Hypothetical: The Red Queen series is a science fantasy young adult series written by Victoria Aveyard, featuring ...
+  [3/5] The director of the romantic comedy "Big Stone Gap" is based...
+  Generating hypothetical document...
+  Hypothetical: The director of the 2019 film adaptation of the novel "Big Stone Gap", John Hamburg, was born and ra...
+  [4/5] 2014 S/S is the debut album of a South Korean boy group that...
+  Generating hypothetical document...
+  Hypothetical: Big Hit Entertainment, a South Korean entertainment company, is credited with forming the South Kore...
+  [5/5] Who was known by his stage name Aladin and helped organizati...
+  Generating hypothetical document...
+  Hypothetical: Aladdin (1955-2000) was a renowned business consultant, best known for his work under the stage name...
+
+==================================================
+SCORES — HYDE (5 samples)
+==================================================
+  Exact Match:   0.6000
+  F1 Score:      0.2190
+  Context Hit:   0.8000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/hyde.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/routing/router.py
+INTENT ROUTER TEST
+============================================================
+
+✅ Query: Who was the first woman in space?...
+   Expected:  SIMPLE
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+✅ Query: When was the Eiffel Tower built?...
+   Expected:  SIMPLE
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+❌ Query: What government position was held by the woman who starred i...
+   Expected:  RELATIONAL
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+❌ Query: Which university did the founder of the company that makes i...
+   Expected:  RELATIONAL
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+✅ Query: What patterns exist in the careers of pioneering female scie...
+   Expected:  THEMATIC
+   Got:       THEMATIC
+   Pipeline:  raptor
+
+❌ Query: How did World War II influence technological development?...
+   Expected:  THEMATIC
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+============================================================
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/routing/router.py
+INTENT ROUTER TEST
+============================================================
+
+✅ Query: Who was the first woman in space?...
+   Expected:  SIMPLE
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+✅ Query: When was the Eiffel Tower built?...
+   Expected:  SIMPLE
+   Got:       SIMPLE
+   Pipeline:  baseline
+
+✅ Query: What government position was held by the woman who starred i...
+   Expected:  RELATIONAL
+   Got:       RELATIONAL
+   Pipeline:  hyde_graph
+
+✅ Query: Which university did the founder of the company that makes i...
+   Expected:  RELATIONAL
+   Got:       RELATIONAL
+   Pipeline:  hyde_graph
+
+✅ Query: What patterns exist in the careers of pioneering female scie...
+   Expected:  THEMATIC
+   Got:       THEMATIC
+   Pipeline:  raptor
+
+✅ Query: How did World War II influence technological development?...
+   Expected:  THEMATIC
+   Got:       THEMATIC
+   Pipeline:  raptor
+
+============================================================
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/simple_evaluator.py --pipeline router --samples 5 --label router
+C:\Users\Bhadra\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\Bhadra\\OneDrive\\Desktop\\raptor\\evaluation\\simple_evaluator.py': [Errno 2] No such file or directory
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py --pipeline router --samples 5 --label router
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+  [1/5] What government position was held by the woman who portrayed...
+    Routed to: hyde_graph (RELATIONAL)
+  Generating hypothetical document...
+  Hypothetical: Michelle Trachtenberg played the role of Corliss Archer in the 2007 comedy film "Kiss and Tell". Tra...
+  [2/5] What science fantasy young adult series, told in first perso...
+    Routed to: raptor (THEMATIC)
+  Generating hypothetical document...
+  Hypothetical: The science fiction series "A Wrinkle in Time" by Madeleine L'Engle is characterized by its use of f...
+  [3/5] The director of the romantic comedy "Big Stone Gap" is based...
+    Routed to: baseline (SIMPLE)
+  [4/5] 2014 S/S is the debut album of a South Korean boy group that...
+    Routed to: hyde_graph (RELATIONAL)
+  Generating hypothetical document...
+  Hypothetical: The 2014 S/S, also known as the Self-Produced Single Series, is the debut album of South Korean boy ...
+  [5/5] Who was known by his stage name Aladin and helped organizati...
+    Routed to: hyde_graph (RELATIONAL)
+  Generating hypothetical document...
+  Hypothetical: Aladdin (born 1955), a renowned organizational consultant, is best known for his work under the pseu...
+
+==================================================
+SCORES — ROUTER (5 samples)
+==================================================
+  Exact Match:   0.6000
+  F1 Score:      0.2444
+  Context Hit:   0.6000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/router.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python -c "
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>import pandas as pd
+'import' is not recognized as an internal or external command,
+operable program or batch file.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>b = pd.read_csv('evaluation/results/baseline.csv')
+'b' is not recognized as an internal or external command,
+operable program or batch file.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>h = pd.read_csv('evaluation/results/hyde.csv')
+'h' is not recognized as an internal or external command,
+operable program or batch file.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>r = pd.read_csv('evaluation/results/router.csv')
+'r' is not recognized as an internal or external command,
+operable program or batch file.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>print(f'Metric               Baseline   HyDE       Router')
+Unable to initialize device PRN
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>print('-'*55)
+No file to print
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>for m in ['exact_match','f1_score','context_hit']:
+m was unexpected at this time.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>    print(f'{m:<20} {b[m].mean():.4f}     {h[m].mean():.4f}     {r[m].mean():.4f}')
+The system cannot find the file specified.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>"python -c "import pandas as pd; b=pd.read_csv('evaluation/results/baseline.csv'); h=pd.read_csv('evaluation/results/hyde.csv'); r=pd.read_csv('evaluation/results/router.csv'); print(f'Metric               Baseline   HyDE       Router'); print('-'*55); [print(f'{m:<20} {b[m].mean():.4f}     {h[m].mean():.4f}     {r[m].mean():.4f}') for m in ['exact_match','f1_score','context_hit']]"
+The system cannot find the file specified.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python -c "import pandas as pd; b=pd.read_csv('evaluation/results/baseline.csv'); h=pd.read_csv('evaluation/results/hyde.csv'); r=pd.read_csv('evaluation/results/router.csv'); print(f'Metric               Baseline   HyDE       Router'); print('-'*55); [print(f'{m:<20} {b[m].mean():.4f}     {h[m].mean():.4f}     {r[m].mean():.4f}') for m in ['exact_match','f1_score','context_hit']]"
+Metric               Baseline   HyDE       Router
+-------------------------------------------------------
+exact_match          0.6000     0.6000     0.6000
+f1_score             0.2631     0.2190     0.2444
+context_hit          0.8000     0.8000     0.6000
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/verification/self_rag.py
+Loading index...
+Loaded FAISS index with 2991 vectors
+
+============================================================
+QUERY: Who was the first woman in space?
+============================================================
+  Grading 8 chunks...
+    Chunk 1: RELEVANT — Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади...
+    Chunk 2: RELEVANT — Annie J. Easley (April 23, 1933 – June 25, 2011) was an Afri...
+    Chunk 3: RELEVANT — Lydia Vladimirovna Litvyak (Лидия Владимировна Литвяк, (Augu...
+    Chunk 4: PARTIAL — Ashley Rolfe is one of the United States Air Force female fi...
+    Chunk 5: IRRELEVANT — Flight Lieutenant Ayesha Farooq (Urdu:عائشہ فاروق) (born Aug...
+    Chunk 6: IRRELEVANT — Hannah "Annie" Elizabeth Rolinson Gale (December 29, 1876 – ...
+    Chunk 7: IRRELEVANT — Susan Thompson Buffett (June 15, 1932 – July 29, 2004), the ...
+    Chunk 8: IRRELEVANT — Shirley Temple Black (April 23, 1928 – February 10, 2014) wa...
+  Kept 4/8 chunks after grading
+
+Retrieval summary:
+  Retrieved: 8 chunks
+  Kept:      4 chunks
+  Grades:    ['RELEVANT', 'RELEVANT', 'RELEVANT', 'PARTIAL']
+
+Final answer: Valentina Vladimirovna Tereshkova.
+
+============================================================
+QUERY: What government position was held by the woman who portrayed Corliss Archer?
+============================================================
+  Grading 8 chunks...
+    Chunk 1: IRRELEVANT — Meet Corliss Archer is an American television sitcom that ai...
+    Chunk 2: IRRELEVANT — Meet Corliss Archer, a program from radio's Golden Age, ran ...
+    Chunk 3: RELEVANT — Shirley Temple Black (April 23, 1928 – February 10, 2014) wa...
+    Chunk 4: PARTIAL — Estelle Hemsley (May 5, 1887 - November 5, 1968) was a promi...
+    Chunk 5: IRRELEVANT — Gretchen Osgood Warren (19 March 1868 – September 1961), the...
+    Chunk 6: PARTIAL — Chloe Frances Dykstra (born September 15, 1988) is an Americ...
+    Chunk 7: IRRELEVANT — A Kiss for Corliss is a 1949 American comedy film directed b...
+    Chunk 8: PARTIAL — Hannah "Annie" Elizabeth Rolinson Gale (December 29, 1876 – ...
+  Kept 4/8 chunks after grading
+
+Retrieval summary:
+  Retrieved: 8 chunks
+  Kept:      4 chunks
+  Grades:    ['RELEVANT', 'PARTIAL', 'PARTIAL', 'PARTIAL']
+
+Final answer: I cannot find the answer in the provided context. The text does not mention anyone portraying Corliss Archer or holding a specific government position related to that character.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/verification/self_rag.py
+Loading index...
+Loaded FAISS index with 2991 vectors
+
+============================================================
+QUERY: Who was the first woman in space?
+============================================================
+  Grading 8 chunks...
+    Chunk 1: RELEVANT — Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади...
+Traceback (most recent call last):
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\src\verification\self_rag.py", line 164, in <module>
+    result = self_rag_retrieve(query, faiss_index, texts, metadatas)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\src\verification\self_rag.py", line 137, in self_rag_retrieve
+    graded_chunks = grade_all_chunks(query, chunks)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\src\verification\self_rag.py", line 93, in grade_all_chunks
+    result = grade_chunk(query, chunk)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\src\verification\self_rag.py", line 60, in grade_chunk
+    response = llm.complete(prompt)
+               ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\llama_index\core\instrumentation\dispatcher.py", line 230, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\llama_index\core\llms\callbacks.py", line 429, in wrapped_llm_predict
+    f_return_val = f(_self, *args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\llama_index\llms\ollama\base.py", line 261, in complete
+    response = client.post(
+               ^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 1144, in post
+    return self.request(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 914, in send
+    response = self._send_handling_auth(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 942, in _send_handling_auth
+    response = self._send_handling_redirects(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 979, in _send_handling_redirects
+    response = self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_client.py", line 1014, in _send_single_request
+    response = transport.handle_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpx\_transports\default.py", line 250, in handle_request
+    resp = self._pool.handle_request(req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 256, in handle_request
+    raise exc from None
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 236, in handle_request
+    response = connection.handle_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_sync\connection.py", line 101, in handle_request
+    raise exc
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_sync\connection.py", line 78, in handle_request
+    stream = self._connect(request)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_sync\connection.py", line 124, in _connect
+    stream = self._network_backend.connect_tcp(**kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\OneDrive\Desktop\raptor\venv\Lib\site-packages\httpcore\_backends\sync.py", line 208, in connect_tcp
+    sock = socket.create_connection(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Bhadra\AppData\Local\Programs\Python\Python311\Lib\socket.py", line 843, in create_connection
+    exceptions.clear()  # raise only the last error
+    ^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+^C
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py --pipeline self_rag --samples 5 --label self_rag
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+  [1/5] What government position was held by the woman who portrayed...
+  Grading 8 chunks...
+    Chunk 1: IRRELEVANT — Kiss and Tell is a 1945 American comedy film starring then 1...
+    Chunk 2: IRRELEVANT — Meet Corliss Archer is an American television sitcom that ai...
+    Chunk 3: IRRELEVANT — A Kiss for Corliss is a 1949 American comedy film directed b...
+    Chunk 4: PARTIAL — Shirley Temple Black (April 23, 1928 – February 10, 2014) wa...
+    Chunk 5: IRRELEVANT — Meet Corliss Archer, a program from radio's Golden Age, ran ...
+    Chunk 6: PARTIAL — Devyani Khobragade is an Indian Foreign Service officer.  Wh...
+    Chunk 7: PARTIAL — Estelle Hemsley (May 5, 1887 - November 5, 1968) was a promi...
+    Chunk 8: PARTIAL — Chloe Frances Dykstra (born September 15, 1988) is an Americ...
+  Kept 4/8 chunks after grading
+  [2/5] What science fantasy young adult series, told in first perso...
+  Grading 8 chunks...
+    Chunk 1: RELEVANT — Animorphs is a science fantasy series of young adult books w...
+    Chunk 2: PARTIAL — "Left Behind: The Kids (stylized as LEFT BEHIND >THE KIDS<)"...
+    Chunk 3: IRRELEVANT — The Divide trilogy is a fantasy young adult novel trilogy by...
+    Chunk 4: PARTIAL — Victoria Hanley is an American young adult fantasy novelist....
+    Chunk 5: PARTIAL — The Hork-Bajir Chronicles is the second companion book to th...
+    Chunk 6: IRRELEVANT — Dozens of Square Enix companion books have been produced sin...
+    Chunk 7: PARTIAL — Shadowshaper is a 2015 American urban fantasy young adult no...
+    Chunk 8: RELEVANT — The Andre Norton Award for Young Adult Science Fiction and F...
+  Kept 6/8 chunks after grading
+  [3/5] The director of the romantic comedy "Big Stone Gap" is based...
+  Grading 8 chunks...
+    Chunk 1: IRRELEVANT — Big Stone Gap is a 2014 American drama romantic comedy film ...
+    Chunk 2: IRRELEVANT — "La La Land" is a 2016 American romantic musical comedy-dram...
+    Chunk 3: IRRELEVANT — The Wet Hot American Summer series is an American satirical ...
+    Chunk 4: IRRELEVANT — Doc NYC (stylized as DOC NYC) is an annual documentary film ...
+    Chunk 5: RELEVANT — Nola is a 2003 American romantic comedy film written and dir...
+    Chunk 6: IRRELEVANT — John Samuel Waters Jr. (born April 22, 1946) is an American ...
+    Chunk 7: IRRELEVANT — City of Angels is a 1998 American romantic fantasy film dire...
+    Chunk 8: IRRELEVANT — I Love NY, also known as I Love New Year, is an Indian roman...
+  Kept 1/8 chunks after grading
+  [4/5] 2014 S/S is the debut album of a South Korean boy group that...
+  Grading 8 chunks...
+    Chunk 1: RELEVANT — 2014 S/S is the debut album of South Korean group WINNER.  I...
+    Chunk 2: IRRELEVANT — SF9 (Korean: 에스에프나인 ; shortened from Sensational Feeling 9) ...
+    Chunk 3: PARTIAL — The following is the discography of South Korean boy group B...
+    Chunk 4: PARTIAL — Winner (Hangul: 위너), often stylized as WINNER, is a South Ko...
+    Chunk 5: IRRELEVANT — History (Korean: 히스토리 ) was a South Korean boy group formed ...
+    Chunk 6: RELEVANT — Madtown (Hangul: 매드타운 ), often stylized as MADTOWN, is a Sou...
+    Chunk 7: IRRELEVANT — This is the discography of South Korean boy group Seventeen....
+    Chunk 8: IRRELEVANT — South Korean boy group Shinee have received several awards a...
+  Kept 4/8 chunks after grading
+  [5/5] Who was known by his stage name Aladin and helped organizati...
+  Grading 8 chunks...
+    Chunk 1: RELEVANT — Eenasul Fateh (Bengali: ঈনাসুল ফাতেহ ; born 3 April 1959), a...
+    Chunk 2: IRRELEVANT — Paul John Manafort Jr. (born April 1, 1949) is an American l...
+    Chunk 3: IRRELEVANT — David Urban (born c. 1964) is an American lobbyist, politica...
+    Chunk 4: PARTIAL — Mark D. Fabiani (born 1957) is an American political strateg...
+    Chunk 5: PARTIAL — Alfred Balk (July 24, 1930 – November 25, 2010) was an Ameri...
+    Chunk 6: PARTIAL — Jonathan Wolfson (born December 1, 1970) is an American tele...
+    Chunk 7: IRRELEVANT — Lanre Dabiri (born May 23, 1977), better known by his stage ...
+    Chunk 8: PARTIAL — Management consulting is the practice of helping organizatio...
+  Kept 5/8 chunks after grading
+
+==================================================
+SCORES — SELF_RAG (5 samples)
+==================================================
+  Exact Match:   0.6000
+  F1 Score:      0.1284
+  Context Hit:   0.8000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/self_rag.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/retrieval/graph_builder.py
+Loading chunks...
+Building graph from 2991 chunks...
+100%|██████████████████████████████████| 2991/2991 [01:38<00:00, 30.41it/s]
+Graph built:
+  Nodes (entities): 15379
+  Edges (relations): 96224
+Graph saved to data/graph.pkl
+
+Sample entities in graph:
+  Ed Wood (PERSON) — freq: 2
+  Tim Burton (PERSON) — freq: 1
+  Johnny (PERSON) — freq: 3
+  Wood (ORG) — freq: 1
+  Bela Lugosi (PERSON) — freq: 1
+  Martin Landau (PERSON) — freq: 1
+  Sarah Jessica Parker (PERSON) — freq: 1
+  Patricia Arquette (PERSON) — freq: 1
+  Jeffrey Jones (PERSON) — freq: 1
+  Lisa Marie (PERSON) — freq: 1
+
+Sample relationships:
+  Ed Wood ←→ Tim Burton (co-occurs 1 times)
+  Ed Wood ←→ Johnny (co-occurs 1 times)
+  Ed Wood ←→ Wood (co-occurs 1 times)
+  Ed Wood ←→ Bela Lugosi (co-occurs 1 times)
+  Ed Wood ←→ Martin Landau (co-occurs 1 times)
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>
+
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/retrieval/raptor.py
+Building RAPTOR summaries...
+Loading chunks...
+Using 200 chunks for RAPTOR tree
+  Embedding 200 chunks for clustering...
+
+
+
+
+
+
+
+Microsoft Windows [Version 10.0.26200.8457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Bhadra>cd C:\Users\Bhadra\OneDrive\Desktop\raptor
+
+C:\Users\Bhadra\OneDrive\Desktop\raptor>
+C:\Users\Bhadra\OneDrive\Desktop\raptor>venv\Scripts\activate
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/simple_evaluator.py --pipeline graph_rag --samples 3 --label graph_rag
+C:\Users\Bhadra\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\Bhadra\\OneDrive\\Desktop\\raptor\\evaluation\\simple_evaluator.py': [Errno 2] No such file or directory
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py --pipeline graph_rag --samples 3 --label graph_rag
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+Graph loaded.
+  [1/3] What government position was held by the woman who portrayed...
+  Query entities: ['Corliss Archer', 'Kiss and Tell']
+  Graph: 'Corliss Archer' matched to nodes: ['Corliss Archer', 'Corliss', 'Archer', 'SS', 'A']
+  Graph: 'Kiss and Tell' matched to nodes: ['Kiss and Tell', 'Kiss', 'SS', 'A']
+  Graph retrieved 8 chunks via entity traversal
+  [2/3] What science fantasy young adult series, told in first perso...
+  Query entities: ['What science fantasy young adult series', 'first person', 'a set']
+  Graph: 'What science fantasy young adult series' matched to nodes: ['Science Fantasy', 'Young', 'Series', 'W', 'Un']
+  Graph: 'first person' matched to nodes: ['IRS', 'IR', 'Son']
+  Graph: 'a set' matched to nodes: ['Ichitaka Seto', 'Garifuna Settlement Day', 'A']
+  Graph retrieved 8 chunks via entity traversal
+  [3/3] The director of the romantic comedy "Big Stone Gap" is based...
+  Query entities: ['New York']
+  Graph: 'New York' matched to nodes: ['New York City', 'New York', 'The New York Society of Model Engineers', 'the State of New York', "New York City's"]
+  Graph retrieved 8 chunks via entity traversal
+
+==================================================
+SCORES — GRAPH_RAG (3 samples)
+==================================================
+  Exact Match:   0.0000
+  F1 Score:      0.0000
+  Context Hit:   0.0000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/graph_rag.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python evaluation/evaluator.py --pipeline graph_rag --samples 5 --label graph_rag
+Loading data and index...
+Loaded FAISS index with 2991 vectors
+Graph loaded.
+  [1/5] What government position was held by the woman who portrayed...
+  Query entities: ['Corliss Archer', 'Kiss and Tell']
+  Graph: 'Corliss Archer' matched to nodes: ['Corliss Archer', 'Corliss', 'Archer']
+  Graph: 'Kiss and Tell' matched to nodes: ['Kiss and Tell', 'Kiss']
+  Combined 5 FAISS + 5 graph chunks
+  [2/5] What science fantasy young adult series, told in first perso...
+  Query entities: ['What science fantasy young adult series', 'first person', 'a set']
+  Graph: no match found for 'first person'
+  Graph: 'a set' matched to nodes: ['Ichitaka Seto', 'Garifuna Settlement Day']
+  Combined 5 FAISS + 5 graph chunks
+  [3/5] The director of the romantic comedy "Big Stone Gap" is based...
+  Query entities: ['New York']
+  Graph: 'New York' matched to nodes: ['New York City', 'New York', 'The New York Society of Model Engineers', 'the State of New York', "New York City's"]
+  Combined 5 FAISS + 5 graph chunks
+  [4/5] 2014 S/S is the debut album of a South Korean boy group that...
+  Query entities: ['2014 S/S', 'the debut album', 'a South Korean boy group']
+  Graph: no match found for '2014 S/S'
+  Graph: no match found for 'the debut album'
+  No clean graph results — using FAISS only
+  [5/5] Who was known by his stage name Aladin and helped organizati...
+  Query entities: ['Aladin']
+  Graph: 'Aladin' matched to nodes: ['Aladin']
+  Combined 5 FAISS + 1 graph chunks
+
+==================================================
+SCORES — GRAPH_RAG (5 samples)
+==================================================
+  Exact Match:   0.6000
+  F1 Score:      0.1902
+  Context Hit:   1.0000
+==================================================
+Scale: 0.0 (worst) → 1.0 (best)
+Saved to evaluation/results/graph_rag.csv
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/retrieval/raptor.py
+Building RAPTOR summaries...
+Loading chunks...
+Using 200 chunks for RAPTOR tree
+  Embedding 200 chunks for clustering...
+  Created 5 clusters
+  Summarizing cluster 1/5 (36 chunks)...
+  Summary: There is no shared theme or topic among the passages provided, as they describe different individual...
+  Summarizing cluster 2/5 (44 chunks)...
+  Summary: There is no common theme or topic shared across the passages. The texts appear to be unrelated, disc...
+  Summarizing cluster 3/5 (40 chunks)...
+  Summary: There is no summary to write as there are no passages provided. Please share the actual passages you...
+  Summarizing cluster 4/5 (26 chunks)...
+  Summary: No summary is available as there are no passages provided to summarize. Please provide the passages ...
+  Summarizing cluster 5/5 (54 chunks)...
+  Summary: There is no clear common theme among the passages provided. However, a possible thread is that some ...
+
+Saved 5 RAPTOR summaries to data/raptor_summaries.json
+
+Loading index...
+Loaded FAISS index with 2991 vectors
+
+============================================================
+QUERY: What patterns exist in the careers of pioneering female aviators?
+============================================================
+Chunks: 4 FAISS + 5 summaries
+Answer: I cannot find the answer in the provided context. The context only provides information about Ashley Rolfe, Ayesha Farooq, Lydia Vladimirovna Litvyak, and Candice E. Jackson, but there is no mention of any patterns or commonalities in their careers as pioneering female aviators.
+
+============================================================
+QUERY: Who was the first woman in space?
+==========================================R>
+==================
+Chunks: 4 FAISS + 5 summaries
+Answer: Valentina Vladimirovna Tereshkova.
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptoR>
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>python src/pipeline/acre.py
+Initializing ACRE...
+Loaded FAISS index with 2991 vectors
+Loading graph...
+Loading RAPTOR summaries...
+Loaded 5 RAPTOR summaries
+ACRE ready.
+
+
+============================================================
+ACRE — FULL PIPELINE TEST
+============================================================
+
+============================================================
+Query: Who was the first woman in space?
+--------------------------------------------------
+Route: SIMPLE → baseline
+Retrieved: 5 chunks via faiss
+Self-RAG grading...
+  Grading 5 chunks...
+    Chunk 1: RELEVANT — Valentina Vladimirovna Tereshkova (Russian: Валенти́на Влади...
+    Chunk 2: PARTIAL — Annie J. Easley (April 23, 1933 – June 25, 2011) was an Afri...
+    Chunk 3: RELEVANT — Lydia Vladimirovna Litvyak (Лидия Владимировна Литвяк, (Augu...
+    Chunk 4: IRRELEVANT — Ashley Rolfe is one of the United States Air Force female fi...
+    Chunk 5: IRRELEVANT — Flight Lieutenant Ayesha Farooq (Urdu:عائشہ فاروق) (born Aug...
+  Kept 3/5 chunks after grading
+Kept: 3/5 chunks after grading
+
+Answer: Valentina Vladimirovna Tereshkova.
+Route taken: SIMPLE → faiss
+Chunks: 5 retrieved → 3 after Self-RAG
+
+============================================================
+Query: What government position was held by the woman who portrayed Corliss Archer?
+--------------------------------------------------
+Route: RELATIONAL → hyde_graph
+  Generating hypothetical document...
+  Hypothetical: Tia Carrere played the role of Corliss Archer in the television series "Mighty Morphin Power Rangers...
+  Query entities: ['Corliss Archer']
+  Graph: 'Corliss Archer' matched to nodes: ['Corliss Archer', 'Corliss', 'Archer']
+  Combined 5 FAISS + 5 graph chunks
+Retrieved: 7 chunks via hyde+graphrag
+Self-RAG grading...
+  Grading 7 chunks...
+    Chunk 1: IRRELEVANT — Meet Corliss Archer is an American television sitcom that ai...
+    Chunk 2: PARTIAL — Meet Corliss Archer, a program from radio's Golden Age, ran ...
+    Chunk 3: RELEVANT — Shirley Temple Black (April 23, 1928 – February 10, 2014) wa...
+    Chunk 4: PARTIAL — Estelle Hemsley (May 5, 1887 - November 5, 1968) was a promi...
+    Chunk 5: PARTIAL — Gretchen Osgood Warren (19 March 1868 – September 1961), the...
+    Chunk 6: RELEVANT — Janet Marie Waldo (February 4, 1920 – June 12, 2016) was an ...
+    Chunk 7: PARTIAL — Kiss and Tell is a 1945 American comedy film starring then 1...
+  Kept 6/7 chunks after grading
+Kept: 6/7 chunks after grading
+
+Answer: I cannot find the answer in the provided context.
+Route taken: RELATIONAL → hyde+graphrag
+Chunks: 7 retrieved → 6 after Self-RAG
+
+============================================================
+Query: What patterns exist in the careers of pioneering female aviators?
+--------------------------------------------------
+Route: THEMATIC → raptor
+  Generating hypothetical document...
+  Hypothetical: Many pioneering female aviators have demonstrated a tendency towards significant milestones and awar...
+Retrieved: 8 chunks via hyde+raptor
+Self-RAG grading...
+  Grading 8 chunks...
+    Chunk 1: PARTIAL — Ashley Rolfe is one of the United States Air Force female fi...
+    Chunk 2: PARTIAL — Flight Lieutenant Ayesha Farooq (Urdu:عائشہ فاروق) (born Aug...
+    Chunk 3: RELEVANT — Lydia Vladimirovna Litvyak (Лидия Владимировна Литвяк, (Augu...
+    Chunk 4: IRRELEVANT — Their Lives: The Women Targeted by the Clinton Machine is a ...
+    Chunk 5: IRRELEVANT — There is no shared theme or topic among the passages provide...
+    Chunk 6: IRRELEVANT — There is no common theme or topic shared across the passages...
+    Chunk 7: IRRELEVANT — There is no summary to write as there are no passages provid...
+    Chunk 8: IRRELEVANT — No summary is available as there are no passages provided to...
+  Kept 3/8 chunks after grading
+Kept: 3/8 chunks after grading
+
+Answer: According to the provided context, the following patterns exist in the careers of pioneering female aviators:
+
+1. Breaking barriers and making history: All three individuals (Ashley Rolfe, Ayesha Farooq, and Lydia Vladimirovna Litvyak) broke records and made history by becoming the first/female/only fighter pilots in their respective countries' air forces.
+2. Overcoming challenges to achieve qualification: Ashley Rolfe qualified to fly the McDonnell Douglas F-15 Eagle and Ayesha Farooq topped the final exams to qualify as a fighter pilot in Pakistan Air Force.
+3. Flying missions alongside male colleagues: After achieving qualifications, all three individuals began flying missions alongside their male colleagues.
+
+These patterns suggest that pioneering female aviators face significant challenges but persevere to achieve recognition and set records for their careers.
+Route taken: THEMATIC → hyde+raptor
+Chunks: 8 retrieved → 3 after Self-RAG
+
+(venv) C:\Users\Bhadra\OneDrive\Desktop\raptor>
